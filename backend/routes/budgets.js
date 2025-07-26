@@ -26,10 +26,11 @@ router.get('/', async (req, res) => {
 
 // POST /api/budgets
 router.post('/', async (req, res) => {
-  const { month, categoryId, limit } = req.body;
+  console.log('Creating budget:', req.body);
+  const { month, categoryId, amount } = req.body;
 
-  if (!month || !categoryId || limit == null)
-    return res.status(400).json({ message: 'month, categoryId and limit are required' });
+  if (!month || !categoryId || amount == null)
+    return res.status(400).json({ message: 'month, categoryId and amount are required' });
 
   const existing = await prisma.budget.findFirst({
     where: {
@@ -48,7 +49,7 @@ router.post('/', async (req, res) => {
       userId: req.userId,
       month,
       categoryId,
-      limit: parseFloat(limit),
+      amount: parseFloat(amount),
     },
   });
 
@@ -57,7 +58,7 @@ router.post('/', async (req, res) => {
 
 // PUT /api/budgets/:id
 router.put('/:id', async (req, res) => {
-  const { limit } = req.body;
+  const { amount } = req.body;
   const { id } = req.params;
 
   const budget = await prisma.budget.findFirst({
@@ -68,7 +69,7 @@ router.put('/:id', async (req, res) => {
 
   const updated = await prisma.budget.update({
     where: { id: budget.id },
-    data: { limit: parseFloat(limit) },
+    data: { amount: parseFloat(amount) },
   });
 
   res.json(updated);

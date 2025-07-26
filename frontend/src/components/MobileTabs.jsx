@@ -3,10 +3,12 @@ import EntryTab from './tabs/EntryTab';
 import CategoriesTab from './tabs/CategoriesTab';
 import SummaryTab from './tabs/SummaryTab';
 import ChartTab from './tabs/ChartTab';
+import BudgetsTab from './tabs/BudgetsTab';
 import Filters from './Filters';
 
-const tabIcons = ['🏠', '📂', '📊', '📈'];
-const tabLabels = ['Entry', 'Categories', 'Summary', 'Charts'];
+const tabIcons = ['🏠', '📂', '📊', '📈', '💰'];
+const tabLabels = ['Entry', 'Categories', 'Summary', 'Charts', 'Budgets'];
+
 
 export default function MobileTabs({ user, categories, filters, setFilters, entries, fetchAll, onLogout }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -44,6 +46,9 @@ export default function MobileTabs({ user, categories, filters, setFilters, entr
           setFilters={setFilters}
         />
       );
+      case 4:
+      return <BudgetsTab categories={categories} filters={filters}
+          setFilters={setFilters}/>;
     default:
       return null;
   }
