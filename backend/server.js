@@ -10,6 +10,7 @@ import authRoutes from './routes/auth.js';
 import categoryRoutes from './routes/categories.js';
 import entryRoutes from './routes/entries.js';
 import meRoutes from './routes/me.js';
+import budgetRoutes from './routes/budgets.js';
 
 dotenv.config();
 const app = express();
@@ -28,6 +29,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/entries', entryRoutes);
 app.use('/api/me', meRoutes);
+app.use('/api/budgets', budgetRoutes);
 
 // Serve frontend
 app.get(/^\/(?!api).*/, (req, res) => {

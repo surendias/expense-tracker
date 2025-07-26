@@ -27,34 +27,71 @@ export default function EntryForm({ categories, onCreated }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-3">
-      <div className="row g-2">
-        <div className="col-md-3">
-          <input name="date" type="date" className="form-control" value={form.date} onChange={handleChange} required />
-        </div>
-        <div className="col-md-2">
-          <input name="account" type="text" className="form-control" placeholder="Account" value={form.account} onChange={handleChange} required />
-        </div>
-        <div className="col-md-2">
-          <input name="amount" type="number" className="form-control" placeholder="Amount" value={form.amount} onChange={handleChange} required />
-        </div>
-        <div className="col-md-2">
-          <select name="type" className="form-select" value={form.type} onChange={handleChange}>
-            <option value="expense">Expense</option>
-            <option value="income">Income</option>
-          </select>
-        </div>
-        <div className="col-md-2">
-          <select name="categoryId" className="form-select" value={form.categoryId} onChange={handleChange}>
-            {categories.map(c => (
-              <option key={c.id} value={c.id}>{c.name}</option>
-            ))}
-          </select>
-        </div>
-        <div className="col-md-1">
-          <button type="submit" className="btn btn-success w-100">+</button>
-        </div>
+    <form onSubmit={handleSubmit}>
+      <div className="mb-2">
+        <input
+          name="date"
+          type="date"
+          className="form-control"
+          placeholder="Date"
+          value={form.date}
+          onChange={handleChange}
+          required
+        />
       </div>
+
+      <div className="mb-2">
+        <input
+          name="account"
+          type="text"
+          className="form-control"
+          placeholder="Account"
+          value={form.account}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-2">
+        <input
+          name="amount"
+          type="number"
+          className="form-control"
+          placeholder="Amount"
+          value={form.amount}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-2">
+        <select
+          name="type"
+          className="form-select"
+          value={form.type}
+          onChange={handleChange}
+        >
+          <option value="expense">Expense</option>
+          <option value="income">Income</option>
+        </select>
+      </div>
+
+      <div className="mb-3">
+        <select
+          name="categoryId"
+          className="form-select"
+          value={form.categoryId}
+          onChange={handleChange}
+        >
+          {categories.map(c => (
+            <option key={c.id} value={c.id}>{c.name}</option>
+          ))}
+        </select>
+      </div>
+
+      <button type="submit" className="btn btn-success w-100">
+        ➕ Add
+      </button>
     </form>
   );
 }

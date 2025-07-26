@@ -1,13 +1,26 @@
 export default function Filters({ filters, setFilters, categories = [] }) {
   return (
+    <>
+<style>
+        {`
+          input[type="month"] {
+  appearance: auto;
+  -webkit-appearance: auto;
+}
+        `}
+      </style>
     <div className="row mb-4">
       <div className="col-md-4 mb-2 mb-md-0">
         <input
-          type="month"
-          className="form-control"
-          value={filters.month}
-          onChange={(e) => setFilters({ ...filters, month: e.target.value })}
-        />
+  type="date"
+  className="form-control"
+  value={filters.month + '-01'} // so it's a full date
+  onChange={(e) => {
+    const fullDate = e.target.value; // e.g. "2025-07-01"
+    const monthOnly = fullDate.slice(0, 7);
+    setFilters({ ...filters, month: monthOnly });
+  }}
+/>
       </div>
 
       <div className="col-md-4 mb-2 mb-md-0">
@@ -38,5 +51,6 @@ export default function Filters({ filters, setFilters, categories = [] }) {
         </select>
       </div>
     </div>
+    </>
   );
 }
